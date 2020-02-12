@@ -1,6 +1,5 @@
 import math
 import copy
-<<<<<<< HEAD
 
 class Point:
     '''Represents a point in 2-D space.'''
@@ -19,7 +18,7 @@ def distance_between_points(p1,p2):
    
    p1, p2: Point 
    '''
-=======
+
 class Point:
     '''Represents a point in 2-D space.'''
 
@@ -27,12 +26,10 @@ def print_point(p):
     print ('(%g, %g)' % (p.x, p.y))
 
 def distance_between_points(p1,p2):
->>>>>>> 99fbb05... Add exercises chapter 15
     dx = p1.x - p2.x
     dy = p1.y - p2.y
     return math.sqrt(dx**2 + dy**2)
 
-<<<<<<< HEAD
 
 class Rectangle():
     '''represent a rectangle.
@@ -94,11 +91,6 @@ def main():
     done = find_center(rect)
     print_point(done)
 
-
-
-if __name__ == "__main__":
-    main()
-=======
 class Rectangle():
     '''represent a rectangle.
        attributes: width, height, coner.
@@ -152,4 +144,3 @@ new_box = move_rectangle_copy(box,3,5)
 print(new_box.corner.x)
 print(new_box.corner.y)
 
->>>>>>> 99fbb05... Add exercises chapter 15
