@@ -5,12 +5,13 @@ class Time:
     attributes: x,y
     """
     def __init__(self, hour=0, minute=0, second=0):
-       self.hour = hour
-       self.minute = minute
-       self.second = second
+       minutes = hour * 60 + minute
+       self.seconds = minutes * 60 + second
 
     def __str__(self):
-        return ('%.2d:%.2d:%.2d' % (self.hour, self.minute, self.second))
+        minute, second = divmod(self.seconds, 60)
+        hour, minute = divmod(minute, 60)
+        return ('%.2d:%.2d:%.2d' % (hour, minute, second))
 
     def __add__(self, other):
         if isinstance(other, Time):
@@ -26,12 +27,10 @@ class Time:
         return int_to_time(seconds)
 
     def print_time(self):
-        print('%.2d:%.2d:%.2d' % (self.hour, self.minute, self.second))
+        print(str(self))
 
     def time_to_int(self):
-        minutes = self.hour * 60 + self.minute
-        seconds = minutes * 60 + self.second
-        return seconds
+        return self.seconds
 
     def increment(self, seconds):
         seconds += self.time_to_int()
@@ -42,11 +41,7 @@ class Time:
 
 
 def int_to_time(seconds):
-    time = Time()
-    minutes, time.second = divmod(seconds, 60)
-    time.hour, time.minute = divmod(minutes, 60)
-    return time
-
+    return Time(0,0,seconds)
 
 class Point:
     """Repres space a point in 2-D space
@@ -74,8 +69,9 @@ class Point:
 
 
 def main():
-    point1 = Point(4,3)
-    print((3,5)+ point1)
+    time1 = Time(4,5,6)
+    time1.print_time()
+
 
 if __name__ == '__main__':
     main()

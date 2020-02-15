@@ -5,8 +5,8 @@ class Time:
     attributes: x,y
     """
     def __init__(self, hour=0, minute=0, second=0):
-       minutes = hour * 60 + minute
-       self.seconds = minutes * 60 + second
+        minutes = hour * 60 + minute
+        self.seconds = minutes * 60 + second
 
     def __str__(self):
         minutes, second = divmod(self.seconds,60)
@@ -70,8 +70,7 @@ class Point:
 
 
 def main():
-    time1 = Time(5)
-    time2 = Time(6,5)
+    time1 = Time(4,5,6)
     time1.print_time()
 
 if __name__ == '__main__':
