@@ -5,13 +5,12 @@ class Time:
     attributes: x,y
     """
     def __init__(self, hour=0, minute=0, second=0):
-       minutes = hour * 60 + minute
-       self.seconds = minutes * 60 + second
+       self.hour = hour
+       self.minute = minute
+       self.second = second
 
     def __str__(self):
-        minutes, second = divmod(self.seconds,60)
-        hour, minute = divmod(minutes, 60)
-        return ('%.2d:%.2d:%.2d' % (hour, minute, second))
+        return ('%.2d:%.2d:%.2d' % (self.hour, self.minute, self.second))
 
     def __add__(self, other):
         if isinstance(other, Time):
@@ -27,10 +26,12 @@ class Time:
         return int_to_time(seconds)
 
     def print_time(self):
-        print(str(self))
+        print('%.2d:%.2d:%.2d' % (self.hour, self.minute, self.second))
 
     def time_to_int(self):
-        return self.seconds
+        minutes = self.hour * 60 + self.minute
+        seconds = minutes * 60 + self.second
+        return seconds
 
     def increment(self, seconds):
         seconds += self.time_to_int()
@@ -41,7 +42,10 @@ class Time:
 
 
 def int_to_time(seconds):
-    return Time(0, 0, seconds)
+    time = Time()
+    minutes, time.second = divmod(seconds, 60)
+    time.hour, time.minute = divmod(minutes, 60)
+    return time
 
 
 class Point:
@@ -70,9 +74,9 @@ class Point:
 
 
 def main():
-    time1 = Time(5)
-    time2 = Time(6,5)
-    time1.print_time()
+    point1 = Point(4,3)
+    print((3,5)+ point1)
 
 if __name__ == '__main__':
     main()
+
