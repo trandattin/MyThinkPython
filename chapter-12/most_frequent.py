@@ -40,7 +40,6 @@ def most_frequent(word):
                 print(k, end=', ')
 
 if __name__ == "__main__":
-    word = read_file('words.txt')
-    print(word)
+    word = read_file('/home/tin/Documents/my-think-python/words.txt')
     most_frequent(word)
     

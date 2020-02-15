@@ -95,7 +95,7 @@ def filter_length(d, n):
 
 
 if __name__ == '__main__':
-    d = all_anagrams('words.txt')
+    d = all_anagrams('/home/tin/words.txt')
     print_anagram_sets_in_order(d)
 
     eight_letters = filter_length(d, 8)
