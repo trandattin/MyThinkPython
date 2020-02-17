@@ -14,6 +14,10 @@ class Time:
         return ('%.2d:%.2d:%.2d' % (hour, minute, second))
 
     def __add__(self, other):
+        """Adds two time object or a Time object and a number
+
+        other: Time object a number of second
+        """
         if isinstance(other, Time):
             return self.add_time(other)
         else:
@@ -23,6 +27,7 @@ class Time:
         return self.__add__(other)
 
     def add_time(self, other):
+        """Add two time object"""
         seconds = self.time_to_int() + other.time_to_int()
         return int_to_time(seconds)
 
@@ -30,17 +35,23 @@ class Time:
         print(str(self))
 
     def time_to_int(self):
+        """Computes the number of second since midnight"""
         return self.seconds
 
     def increment(self, seconds):
+        """Return a new Time that is the sum of this time and seconds"""
         seconds += self.time_to_int()
         return int_to_time(seconds)
 
-    def is_after(self,other):
-        return self.time_to_int() < other.time_to_int()
-
+    def is_vaild(self):
+        """Checks whether a Time object satisfies the invariants"""
+        return self.seconds > 0 and self.seconds < 24*60*60
 
 def int_to_time(seconds):
+    """Make a new Time object
+
+    seconds: int time since midnight
+    """
     return Time(0,0,seconds)
 
 class Point:
@@ -56,6 +67,7 @@ class Point:
         return '(%d,%d)'%(self.x,self.y)
 
     def __add__(self, other):
+        """Add two Point object or a Point object and a tuple"""
         if isinstance(other, Point):
             return (self.x + other.x, self.y + other.y)
         elif isinstance(other, tuple):

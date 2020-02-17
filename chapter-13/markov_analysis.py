@@ -105,7 +105,7 @@ def random_text(n=100):
         start = shift(start, word)
 
 
-def main(name, file_name='/home/lark/Documents/my-think-python/half_a_bee.txt', order=2, n=100, *arg):
+def main(name, file_name='/home/tin/Documents/my-think-python/country.txt', order=2, n=100, *arg):
     try:
         order = int(order)
         n = int(n)

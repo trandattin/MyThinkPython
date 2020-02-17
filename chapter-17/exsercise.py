@@ -22,6 +22,10 @@ class Time:
     def __radd__(self,other):
         return self.__add__(other)
 
+    def __lt__(self, other):
+        if self.seconds < other.seconds:
+            return True
+
     def add_time(self, other):
         seconds = self.time_to_int() + other.time_to_int()
         return int_to_time(seconds)
@@ -71,7 +75,9 @@ class Point:
 
 def main():
     time1 = Time(4,5,6)
-    time1.print_time()
+    time2 = Time(5,4,6)
+    t = time1.is_after(time2)
+    print(t)
 
 if __name__ == '__main__':
     main()
