@@ -68,12 +68,3 @@ def find_defining_class(obj, meth_name):
         if meth_name in ty.__dict__:
             return ty
 
-hand1 = Hand()
-deck = Deck()
-deck.shuffle()
-res = deck.deal_hands(4, 13)
-for k,v in res.items():
-    print('Name of player:', k)
-    v.sort()
-    print(v)
-
