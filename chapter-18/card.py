@@ -18,7 +18,7 @@ class Card:
         t2 = other.suit, other.rank
         return t1 < t2
 
-class Deck:
+class Deck(object):
     def __init__(self):
         self.cards = []
         for suit in range(4):
@@ -67,4 +67,10 @@ def find_defining_class(obj, meth_name):
     for ty in type(obj).mro():
         if meth_name in ty.__dict__:
             return ty
+deck = Deck()
+deck.shuffle()
 
+hand = Hand()
+
+deck.move_cards(hand, 5)
+hand.sort()
