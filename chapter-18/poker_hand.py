@@ -37,7 +37,7 @@ class PokerHand(Hand):
             self.suits.count(c.suit)
             self.ranks.count(c.rank)
 
-        self.sets = sorted(self.ranks.values())
+        self.sets = sorted(self.ranks.values(), reverse=True)
 
     def has_highcard(self):
         """Returns True if this hand has a high card."""
@@ -97,7 +97,7 @@ class PokerHand(Hand):
         for i in range(1, 15):
             if ranks.get(i, 0):
                 count += 1
-                if count == 5: return True
+                if count == n: return True
             else:
                 count = 0
         return False
@@ -105,7 +105,7 @@ class PokerHand(Hand):
     def has_straightflush(self):
         """Checks whether this hand has a straight flush
 
-        clummsy algorithm.
+        clumsy algorithm.
         """
         s = set()
         for c in self.cards:
@@ -128,7 +128,7 @@ class PokerHand(Hand):
         """Checks whether this hand has a straight flush.
 
         Better algorithm (in the sense of being more demonstrably
-        corret)
+        corret)in_a_row
         """
 
         d = {}
@@ -151,7 +151,6 @@ class PokerHand(Hand):
         Creates attributes:
         labels:
         """
-        self.make_histograms()
         self.labels = []
         for label in PokerHand.all_labels:
             f = getattr(self, 'has_' + label)
@@ -167,6 +166,7 @@ class PokerDeck(Deck):
         for i in range(num_hands):
             hand = PokerHand()
             deck.move_cards(hand, num_cards)
+            hand.make_histograms()
             hand.classify()
             hands.append(hand)
         return hands
@@ -175,7 +175,7 @@ def main(*args):
     #the label histogram: map from label to number of occurances
     lhist = Hist()
 
-    # loop n times, dealing 7 hands pẻ iteration, 7 cards each
+    # loop n times, dealing 7 hands per iteration, 7 cards each
     n = 1000
     for i in range(n):
         if i%1000 == 0:
@@ -184,13 +184,14 @@ def main(*args):
         deck = PokerDeck()
         deck.shuffle()
 
-        hands = deck.deal_hands(7, 7)
+        hands = deck.deal_hands()
         for hand in hands:
             for label in hand.labels:
                 lhist.count(label)
+        print('lhist',lhist)
 
         # print the results
-        total = 7 * n
+        total = 10 * n
         print(total, 'hands dealt: ')
 
         for label in PokerHand.all_labels:

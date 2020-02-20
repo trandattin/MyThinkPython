@@ -21,6 +21,11 @@ class PokerHand(Hand):
         for card in self.cards:
             self.ranks[card.rank] = self.ranks.get(card.rank, 0) + 1
 
+    def check_sets(self, *t):
+        for need, have in zip(t,self.sets):
+            if need > have: return False
+        return True
+
     def has_pair(self):
         self.rank_hist()
         for val in self.ranks.values():

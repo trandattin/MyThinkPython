@@ -67,10 +67,3 @@ def find_defining_class(obj, meth_name):
     for ty in type(obj).mro():
         if meth_name in ty.__dict__:
             return ty
-deck = Deck()
-deck.shuffle()
-
-hand = Hand()
-
-deck.move_cards(hand, 5)
-hand.sort()
